@@ -1,0 +1,162 @@
+1)Q:Servlet API cosists of how many packages and what are these packages?
+A:-Servlet API cosists of two packages which encapsulates all classes and interfaces and these two packages are :
+1-javax.servlet
+2-javax.servlet.http.
+
+2)
+Q:What are the classes and interfaces of javax.servlet and javax.servlet.http?
+A:
+The interfaces and classes of javax.servlet are as follows-
+
+INTERFACES	         CLASSES
+Servlet	            ServletInputStream
+ServletContext	    ServletOutputStream
+ServletConfig	    ServletRequestWrapper
+ServletRequest	     ServletResponseWrapper
+ServletResponse	     ServletRequestEvent
+ServletContextListener	ServletContextEvent
+RequestDispatcher	   ServletRequestAttributeEvent
+SingleThreadModel	   ServletContextAttributeEvent
+Filter	              ServletException
+FilterConfig	       UnavailableException
+FilterChain	            GenericServlet
+ServletRequestListener	
+
+The interfaces and classes of javax.servlet.http are as follows-
+CLASSES                   INTERFACES
+HttpServlet	             HttpServletRequest
+HttpServletResponse	      HttpSessionAttributeListener
+HttpSession	                HttpSessionListener
+Cookie	                        HttpSessionEvent
+
+
+Q.3)How many methods are present in ServletInterface and what are these?
+A:----
+ServletInterface provides 5 methods from which 3 methods are Servlet life cycle methods and other 2 are non life cycle methods.
+The Servlet life  cycle methods are :
+-------------------------------------
+service(serviceRequest,serviceResponse)
+init(servletconfig)
+destroy()
+The servlet non life cycle methods are :
+-----------------------------------------
+getservletconfig()
+getservletinfo()
+Q.4)What is  a Web Server?
+ 
+ A:i)In a simple situation, a user type in a URL (e.g. www.programcreek.com/static.html) in browser (a client), and get a web page to read. So what the server does is sending a web page to the client. The transformation is in HTTP protocol which specifies the format of request and response message.
+ii)A web server uses HTTP protocol to transfer data.
+iii)Server is one which gets the client request and find the appropriate response for that request.
+iv) Here the response is nothing but static content.
+v) Server won’t do any processing of request to provide dynamic response to the client.
+
+
+Q.5)How  Servlet Container Works?
+A:-i)When the request come to server and if the client is asking for dynamic response the server will forward the request to Servlet Container.
+ii)The Servlet Container will read the xml file and decide for which Servlet it has to transfer the request.
+iii)Once Servlet container decided to which Servlet it has to transfer the request, first it will create one servlet request and response object and create a thread for that servlet and invoke service().
+iv)The doGet() or doPost() method generate the dynamic response and give it to container and the container will give to server and finally server will hand over the response to client.
+v)At last container will delete both the request and response object and delete the thread.
+
+Q.6)What is the different states of Servlet life cycle?
+
+A.-There are five states of Servlet life cycle.These are as follows:
+Loading Servlet Class:- 
+
+ A Servlet class is loaded when first request for the servlet is received by the Web Container.
+ 
+Servlet instance creation :-
+
+After the Servlet class is loaded, Web Container creates the instance of it. Servlet instance is created only once in the life cycle.
+Call to the init() method :-
+
+ init() method is called by the Web Container on servlet instance to initialize the servlet.
+
+
+Call to the service() method : -
+
+The containers call the service() method each time the request for servlet is received. The service() method will then call the doGet() or doPost() methos based on   the type of the HTTP request.
+
+Call to destroy() method:-
+ The Web Container call the destroy() method before removing servlet instance, giving it a chance for cleanup activity.
+
+ Q.7)What is a Servlet life cycle?
+ 
+ A:-The Various states in which a Servlet exists between its object creation and object garbage collection is known as life cycle of Servlet.
+
+ Q.8)Who is responsible to maintain the life cycle? Is it the Developer?
+ A:--
+ i)Everything goes smooth with Servlets without much Developer’s intervention. 
+ ii)Servlet Container or Servlet Engine is responsible for maintaining the life cycle.
+
+ Q.9)What do you mean by loadonStartup ?
+A:-
+ loadOnStartup means that the servlet will be loaded (and its init(..) method called during container startup.
+
+ Q.10)What do you mean by ServletContext Interface?
+    
+     
+ A:-i)For every Web application a ServletContext object is created by the web container.
+ ii)ServletContext object is used to get configuration information from Deployment Descriptor(web.xml) which will be available to any servlet or JSPs that are part of the web app.
+
+Q.11)What are the advantages of ServletContext?
+
+A:--The advantages of ServletContext are as follows:
+
+It Provides communication between servlets.
+It is available to all servlets and JSPs that are part of the web app
+It is Used to get configuration information from web.xml
+
+Q.12)What do you mean by HttpServlet class?
+
+A:- HttpServlet is  an abstract class. 
+    This class gives implementation of various service() methods of Servlet interface.
+    To create a servlet, we should create a class that extends HttpServlet abstract class. 
+	The service() method of HttpServlet class listens to the Http methods (GET, POST etc) from request stream and invokes doGet() or doPost() methods based on Http Method type.
+
+Q.13)What is a servlet container? 
+
+ The basic idea of Servlet container is using Java to dynamically generate the web page on the server side. 
+ So servlet container is essentially a part of a web server that interacts with the servlets.
+ Servlet container is the container for Servlets. 
+ 
+ Q.14)What is a Servlet?
+ 
+ A: Servlet is an interface defined in javax.servlet package. 
+ It declares three essential methods for the life cycle of a servlet - init(), service(), and destroy(). 
+ They are implemented by every servlet(defined in SDK or self-defined) and are invoked at specific times by the server.
+ 
+ Q.15)What is the role of JVM when we use Servlet container ?  
+ 
+ A- Servlets allows the JVM to handle each request within a separate Java thread.
+    The main function of Servlet container  is to forward requests to correct servlet for processing, and return the dynamically generated results to the correct location after the JVM has processed them.
+	Usually  servlet container runs in a single JVM.
+
+Q.16) What are the different methods of GenericServlet class ? 
+
+A:- The different methods of GenericServlet class are as follows:
+ 
+public void init(ServletConfig),public abstract void service(ServletRequest request,ServletResposne response),public void destroy(),public ServletConfig getServletConfig(),public String getServletInfo(),
+public ServletContext getServletContext(),public String getInitParameter(String name),public Enumeration getInitParameterNames()  etc.
+
+Q.17)What are the different methods of ServletConfig interface?
+
+A.- The different methods of ServletConfig interface are  public String getInitParameter(String name),public Enumeration getInitParameterNames(),public String getServletName(),public ServletContext getServletContext().
+   
+Q.18)What are the difference between Context Init Parameters and Servlet Init Parameter?
+
+       Context Init parameters                                                                                      Servlet Init Parameter
+------------------------------------------                                                                        --------------------------
+ 1)it is available to all servlets and JSPs that are part of web.                                              it is   available to only servlet for which the <init-param> was configured.
+ 2)Context Init parameters are initialized within the <web-app> not within a specific <servlet> elements.      It is Initialized within the <servlet> for each specific servlet.
+ 3)ServletContext object is used to get Context Init parameters .                                               ServletConfig object is used to get Servlet Init parameters.
+ 4)Only one ServletContext object available for entire web app.                                                Each servlet has its own ServletConfig object in the web app.
+
+
+
+
+
+
+
+
+
